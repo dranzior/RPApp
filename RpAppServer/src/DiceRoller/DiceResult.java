@@ -18,7 +18,7 @@ public class DiceResult {
     private String result;
 
     public DiceResult(String _roll, String _result) {
-        SimpleDateFormat df = new SimpleDateFormat("hh/mm/ss");
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss");
         time = df.format(new Date());
         roll = _roll;
         result = _result;
