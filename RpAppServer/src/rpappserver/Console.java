@@ -27,20 +27,14 @@ public class Console extends Thread {
             lecture = consoleInput.nextLine();
             lecture = lecture.toLowerCase();
             String command[] = lecture.split(" ");
-            switch (command[0]) {
-                case "exit":
+            if (command[0].compareToIgnoreCase("exit") == 0)
                     System.out.println("\tclosing server");
-                    break;
-                case "simpleroll":
-                    SimpleRoll(command);
-                    break;
-                case "sucesscount":
-                    SucessCount(command);
-                    break;
-                default:
-                    System.out.println("\tUknown Command");
-                    break;
-            }
+            else if (command[0].compareToIgnoreCase("simpleroll") == 0)
+                SimpleRoll(command);
+            else if (command[0].compareToIgnoreCase("sucesscount") == 0)
+                SucessCount(command);
+            else
+                System.out.println("\tUknown Command");
         } while (lecture.compareTo("exit") != 0);
     }
 
