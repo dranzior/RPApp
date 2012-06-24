@@ -40,6 +40,7 @@ public class Console extends Thread {
                 System.out.println("\tUknown Command");
             }
         } while (lecture.compareTo("exit") != 0);
+        Server.getServer().stopServer();
     }
 
     private void SimpleRoll(String[] command) {

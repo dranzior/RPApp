@@ -27,6 +27,7 @@ public class RpAppServer {
         } else {
             Console cons = new Console();
             cons.start();
+            Server.getServer().start();
         }
     }
 }
