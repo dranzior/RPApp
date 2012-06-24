@@ -12,16 +12,18 @@ import MyException.RollerException;
  *
  * @author Mathieu
  */
-public class SimpleRollRule implements DiceRule {
+public class SucessCountRule implements DiceRule {
 
-    private int diceType;
-    private int nbDice;
-    private int baseBonus;
+    int diceType;
+    int nbDice;
+    int sucess;
+    int again;
 
-    public SimpleRollRule(int _diceType, int _nbDice, int _baseBonus) {
+    SucessCountRule(int _diceType, int _nbDice, int _sucess, int _again) {
         diceType = _diceType;
         nbDice = _nbDice;
-        baseBonus = _baseBonus;
+        sucess = _sucess;
+        again = _again;
     }
 
     @Override
@@ -31,6 +33,6 @@ public class SimpleRollRule implements DiceRule {
 
     @Override
     public DiceResult Roll(int bonus) throws RollerException {
-        return Roller.RollSimpleRoll(diceType, nbDice, baseBonus + bonus);
+        return Roller.RollSucessCount(diceType, nbDice + bonus, sucess, again);
     }
 }

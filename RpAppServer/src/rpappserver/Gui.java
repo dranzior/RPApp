@@ -9,5 +9,4 @@ package rpappserver;
  * @author Mathieu
  */
 public interface Gui {
-    
 }

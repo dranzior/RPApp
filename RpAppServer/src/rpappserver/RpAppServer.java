@@ -16,11 +16,11 @@ public class RpAppServer {
     public static void main(String[] args) {
         boolean graph = true;
         for (String command : args) {
-            if (command.compareToIgnoreCase("-G") == 0)
+            if (command.compareToIgnoreCase("-G") == 0) {
                 graph = true;
-            else if(command.compareToIgnoreCase("-C") == 0)
+            } else if (command.compareToIgnoreCase("-C") == 0) {
                 graph = false;
-            else;
+            } else;
         }
         if (graph) {
             System.out.println("InterfaceGraphique");

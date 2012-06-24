@@ -12,6 +12,8 @@ import MyException.RollerException;
  * @author Mathieu
  */
 public interface DiceRule {
+
     public DiceResult Roll() throws RollerException;
+
     public DiceResult Roll(int bonus) throws RollerException;
 }
