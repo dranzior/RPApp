@@ -6,8 +6,8 @@ package rpappserver;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Server extends Thread {
 
-    ServerSocketChannel socket;
+    ServerSocket socket;
     int port = 44910;
     boolean running = false;
     List clients;
@@ -38,12 +38,12 @@ public class Server extends Thread {
     @Override
     public void start() {
         try {
-            socket = ServerSocketChannel.open();
-            socket.configureBlocking(false);
-            socket.socket().bind(new InetSocketAddress(port));
+            socket = new ServerSocket();
+            socket.bind(new InetSocketAddress(port));
             running = true;
             super.start();
         } catch (IOException ex) {
+            System.out.println("Can't open Server");
         }
     }
 
@@ -51,7 +51,7 @@ public class Server extends Thread {
     public void run() {
         while (running) {
             try {
-                SocketChannel accept = socket.accept();
+                Socket accept = socket.accept();
                 if (accept != null) {
                     Client cli = new Client(accept);
                     cli.start();
@@ -60,13 +60,21 @@ public class Server extends Thread {
             } catch (IOException ex) {
             }
         }
-        for (Object cli : clients) {
-            ((Client) cli).stopConnection();
-        }
-        clients.clear();
     }
 
     public void stopServer() {
         running = false;
+        try {
+            socket.close();
+        } catch (IOException ex) {
+        }
+        try {
+            this.join();
+        } catch (InterruptedException ex) {
+        }
+        for (Object cli : clients) {
+            ((Client) cli).stopConnection();
+        }
+        clients.clear();
     }
 }
