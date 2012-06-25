@@ -15,23 +15,28 @@ import java.util.List;
  *
  * @author Mathieu
  */
+
 public class Server extends Thread {
 
     ServerSocket socket;
-    int port = 44910;
+    int port;
     boolean running = false;
     List clients;
     static Server me;
 
-    private Server() {
+    private Server(int _port) {
         running = false;
         clients = new ArrayList();
+        port = _port;
+    }
+    
+    public static void initServer(int _port) {
+        if (me == null) {
+            me = new Server(_port);
+        }
     }
 
     public static Server getServer() {
-        if (me == null) {
-            me = new Server();
-        }
         return me;
     }
 
