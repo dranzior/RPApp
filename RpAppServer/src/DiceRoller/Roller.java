@@ -24,7 +24,7 @@ public class Roller {
             throw new RollerException("invalid dice type");
         }
         if (nbDice < 1) {
-            throw new RollerException("no Dice to roll");
+            throw new RollerException("no dice to roll");
         }
 
         String dice = String.valueOf(nbDice) + "d" + String.valueOf(diceType) + "+" + String.valueOf(bonus);
@@ -48,7 +48,7 @@ public class Roller {
             throw new RollerException("invalid dice type");
         }
         if (nbDice < 1) {
-            throw new RollerException("no Dice to roll");
+            throw new RollerException("no dice to roll");
         }
         if (sucess < 1 || sucess > diceType) {
             throw new RollerException("invalid sucess value");
@@ -57,7 +57,7 @@ public class Roller {
             again = diceType + 1;
         }
         if (again <= 1 || again < sucess) {
-            throw new RollerException("invalid RollAgain value");
+            throw new RollerException("invalid roll again value");
         }
 
         String dice = String.valueOf(nbDice) + "d" + String.valueOf(diceType)

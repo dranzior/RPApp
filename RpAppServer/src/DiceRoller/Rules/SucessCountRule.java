@@ -19,7 +19,7 @@ public class SucessCountRule implements DiceRule {
     int sucess;
     int again;
 
-    SucessCountRule(int _diceType, int _nbDice, int _sucess, int _again) {
+    public SucessCountRule(int _diceType, int _nbDice, int _sucess, int _again) {
         diceType = _diceType;
         nbDice = _nbDice;
         sucess = _sucess;
