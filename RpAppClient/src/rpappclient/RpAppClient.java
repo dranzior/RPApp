@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,20 +22,47 @@ public class RpAppClient {
      */
     public static void main(String[] args) {
         try {
-
-            // TODO code application logic here
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress("localhost", 44910));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            for (int i = 0; i < 5; i++) {
-                out.println("Test de Data");
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(RpAppClient.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            String tmp = null;
+            /*
+             * Test de Rule
+             */
+//            out.println("addpredef;simple;10;2;5");
+//            out.println("addpredef;keep;10;5;2;5");
+//            out.println("addpredef;sucess;10;5;8;10");
+//            out.println("addpredef;lower;100;42");
+//            out.println("rollpredef;0;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollpredef;1;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollpredef;2;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollpredef;3;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+            
+            /*
+             * Test de Roll simple
+             */
+//            out.println("rollany;simple;10;2;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollany;keep;10;5;2;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollany;lower;100;42");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("rollany;sucess;10;5;8;10");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+            
 
             in.close();
             out.close();
