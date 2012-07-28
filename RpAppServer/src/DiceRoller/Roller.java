@@ -4,7 +4,8 @@
  */
 package DiceRoller;
 
-import MyException.RollerException;
+import MyException.ExceptionInfo;
+import MyException.MyException;
 import java.util.Arrays;
 
 /**
@@ -19,12 +20,12 @@ public class Roller {
         return (int) result;
     }
 
-    static public DiceResult RollSimpleRoll(int diceType, int nbDice, int bonus) throws RollerException {
+    static public DiceResult RollSimpleRoll(int diceType, int nbDice, int bonus) throws MyException {
         if (diceType < 1) {
-            throw new RollerException("invalid dice type");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceType);
         }
         if (nbDice < 1) {
-            throw new RollerException("no dice to roll");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceNumber);
         }
 
         String dice = String.valueOf(nbDice) + "d" + String.valueOf(diceType) + "+" + String.valueOf(bonus);
@@ -43,21 +44,21 @@ public class Roller {
         return new DiceResult(dice, result);
     }
 
-    static public DiceResult RollSucessCount(int diceType, int nbDice, int sucess, int again) throws RollerException {
+    static public DiceResult RollSucessCount(int diceType, int nbDice, int sucess, int again) throws MyException {
         if (diceType < 1) {
-            throw new RollerException("invalid dice type");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceType);
         }
         if (nbDice < 1) {
-            throw new RollerException("no dice to roll");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceNumber);
         }
         if (sucess < 1 || sucess > diceType) {
-            throw new RollerException("invalid sucess value");
+            throw new MyException(ExceptionInfo.ROLLER_SUCESSCOUNT_InvalidSucessValue);
         }
         if (again == 0) {
             again = diceType + 1;
         }
         if (again <= 1 || again < sucess) {
-            throw new RollerException("invalid roll again value");
+            throw new MyException(ExceptionInfo.ROLLER_SUCESSCOUNT_InvalidAgainValue);
         }
 
         String dice = String.valueOf(nbDice) + "d" + String.valueOf(diceType)
@@ -88,12 +89,12 @@ public class Roller {
         return new DiceResult(dice, result);
     }
 
-    static public DiceResult RollLowerRoll(int diceType, int threshold) throws RollerException {
+    static public DiceResult RollLowerRoll(int diceType, int threshold) throws MyException {
         if (diceType < 1) {
-            throw new RollerException("invalid Dice Type");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceType);
         }
         if (threshold < 1 || threshold > diceType) {
-            throw new RollerException("invalid threshold");
+            throw new MyException(ExceptionInfo.ROLLER_THRESHOLD_InvalidThresholdValue);
         }
 
         String dice = "1d" + String.valueOf(diceType) + "/" + String.valueOf(threshold);
@@ -107,15 +108,15 @@ public class Roller {
         return new DiceResult(dice, result);
     }
 
-    static public DiceResult RollKeepBest(int diceType, int nbDice, int keep, int bonus) throws RollerException {
+    static public DiceResult RollKeepBest(int diceType, int nbDice, int keep, int bonus) throws MyException {
         if (diceType < 1) {
-            throw new RollerException("invalid dice type");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceType);
         }
         if (nbDice < 1) {
-            throw new RollerException("no dice to roll");
+            throw new MyException(ExceptionInfo.ROLLER_InvalidDiceNumber);
         }
         if (keep < 1 || keep > nbDice) {
-            throw new RollerException("invalide keep");
+            throw new MyException(ExceptionInfo.ROLLER_KEEP_InvalidKeepValue);
         }
         String dice = String.valueOf(nbDice) + "d" + String.valueOf(diceType)
                 + "K" + String.valueOf(keep) + "+" + String.valueOf(bonus);

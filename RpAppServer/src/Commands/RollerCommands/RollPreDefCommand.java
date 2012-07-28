@@ -5,7 +5,8 @@
 package Commands.RollerCommands;
 
 import Commands.Command;
-import Commands.CommandExceptions;
+import MyException.ExceptionInfo;
+import MyException.MyException;
 import rpappserver.Client;
 
 /**
@@ -19,9 +20,9 @@ public class RollPreDefCommand extends Command {
     }
     
     @Override
-    public void Run(String[] param, Client cli) throws CommandExceptions {
+    public void Run(String[] param, Client cli) throws MyException {
         if (param.length != 3)
-            throw new CommandExceptions("invalid parameter number");
+            throw new MyException(ExceptionInfo.COMMAND_ROLLPREDEF_MissingParameter);
         try {
             int id = Integer.parseInt(param[1]);
             int bonus = Integer.parseInt(param[2]);

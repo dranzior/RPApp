@@ -5,7 +5,7 @@
 package DiceRoller;
 
 import DiceRoller.Rules.DiceRule;
-import MyException.RollerException;
+import MyException.MyException;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +24,7 @@ public class DiceRoller {
     public void RollPreDefined(int id, int bonus) {
         try {
             result.add(preDefined.get(id).Roll(bonus));
-        } catch (RollerException ex) {
+        } catch (MyException ex) {
             // TODO Log
         }
     }
@@ -48,7 +48,7 @@ public class DiceRoller {
     public void RollSimpleRoll(int diceType, int nbDice, int bonus) {
         try {
             result.add(Roller.RollSimpleRoll(diceType, nbDice, bonus));
-        } catch (RollerException ex) {
+        } catch (MyException ex) {
             // TODO Log
         }
     }
@@ -56,7 +56,7 @@ public class DiceRoller {
     public void RollSucessCount(int diceType, int nbDice, int sucess, int again) {
         try {
             result.add(Roller.RollSucessCount(diceType, nbDice, sucess, again));
-        } catch (RollerException ex) {
+        } catch (MyException ex) {
             // TODO Log
         }
     }
@@ -64,7 +64,7 @@ public class DiceRoller {
     public void RollLowerRoll(int diceType, int threshold) {
         try {
             result.add(Roller.RollLowerRoll(diceType, threshold));
-        } catch (RollerException ex) {
+        } catch (MyException ex) {
             // TODO Log
         }
     }
@@ -72,7 +72,7 @@ public class DiceRoller {
     public void RollKeepBest(int diceType, int nbDice, int keep, int bonus) {
         try {
             result.add(Roller.RollKeepBest(diceType, nbDice, keep, bonus));
-        } catch (RollerException ex) {
+        } catch (MyException ex) {
             // TODO Log
         }
     }

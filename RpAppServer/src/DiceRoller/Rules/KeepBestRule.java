@@ -6,7 +6,7 @@ package DiceRoller.Rules;
 
 import DiceRoller.DiceResult;
 import DiceRoller.Roller;
-import MyException.RollerException;
+import MyException.MyException;
 
 /**
  *
@@ -27,12 +27,12 @@ public class KeepBestRule implements DiceRule {
     }
 
     @Override
-    public DiceResult Roll() throws RollerException {
+    public DiceResult Roll() throws MyException {
         return Roll(0);
     }
 
     @Override
-    public DiceResult Roll(int bonus) throws RollerException {
+    public DiceResult Roll(int bonus) throws MyException {
         return Roller.RollKeepBest(diceType, nbDice, keep, baseBonus + bonus);
     }
 }

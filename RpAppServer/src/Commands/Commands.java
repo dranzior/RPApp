@@ -8,6 +8,7 @@ package Commands;
 import Commands.RollerCommands.AddPreDefCommand;
 import Commands.RollerCommands.RollAny;
 import Commands.RollerCommands.RollPreDefCommand;
+import MyException.MyException;
 import java.util.HashMap;
 import java.util.Map;
 import rpappserver.Client;
@@ -28,7 +29,7 @@ public class Commands {
     public void Run(Client cli, String[] command) {
         try {
             commands.get(command[0]).Run(command, cli);
-        } catch (CommandExceptions ex) {
+        } catch (MyException ex) {
             // TODO Log
         } catch (NullPointerException ex) {
             System.out.println("wtf?");

@@ -5,7 +5,7 @@
 package DiceRoller.Rules;
 
 import DiceRoller.DiceResult;
-import MyException.RollerException;
+import MyException.MyException;
 
 /**
  *
@@ -13,7 +13,7 @@ import MyException.RollerException;
  */
 public interface DiceRule {
 
-    public DiceResult Roll() throws RollerException;
+    public DiceResult Roll() throws MyException;
 
-    public DiceResult Roll(int bonus) throws RollerException;
+    public DiceResult Roll(int bonus) throws MyException;
 }
