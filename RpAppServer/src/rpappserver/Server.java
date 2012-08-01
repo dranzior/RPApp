@@ -48,6 +48,7 @@ public class Server extends Thread {
             running = true;
             super.start();
         } catch (IOException ex) {
+            // TODO transformer en Erreur
             System.out.println("Can't open Server");
         }
     }

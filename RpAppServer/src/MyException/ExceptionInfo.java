@@ -38,4 +38,11 @@ public enum ExceptionInfo {
             ROLLER_KEEP_InvalidKeepValue,
         //
     //
+//SQL
+    //DATABASE
+        SQL_DATABASE_CannotOpenDatabase,
+    //DATASET
+        SQL_DATASET_InvalidLineNumber,
+        SQL_DATASET_InvalidColumnNumber,
+        SQL_DATASET_InvalidColumnName,
 }

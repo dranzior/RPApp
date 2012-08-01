@@ -4,6 +4,8 @@
  */
 package rpappserver;
 
+import DB.SQLite.SQLiteConnection;
+import MyException.MyException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,10 +44,21 @@ public class RpAppServer {
         if (graph) {
             System.out.println("InterfaceGraphique");
         } else {
-            Console cons = new Console();
-            cons.start();
+            try {
+                //Créer les modules
+                SQLiteConnection.Init("jdbc:sqlite://D:/mathieu/Mes Documents/NetBeansProjects/RPApp/RPApp/RpAppServer/build/RPApp.db");
+            } catch (MyException ex) {
+                // TODO message d'erreur
+                // TODO gestion d'erreur
+                return;
+            }
             Server.initServer(port);
             Server.getServer().start();
+            
+                //ouvrir la console
+            Console cons = new Console();
+            cons.start();
+            
         }
     }
 }
