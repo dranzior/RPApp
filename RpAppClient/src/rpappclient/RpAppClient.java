@@ -28,6 +28,13 @@ public class RpAppClient {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String tmp = null;
             /*
+             * Test de Connection
+             */
+            out.println("connection;DongeonMaster;APassword");
+            tmp = in.readLine();
+            System.out.println(tmp);
+
+            /*
              * Test de Rule
              */
 //            out.println("addpredef;simple;10;2;5");
