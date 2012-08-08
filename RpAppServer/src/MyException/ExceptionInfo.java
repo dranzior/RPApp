@@ -14,6 +14,7 @@ public enum ExceptionInfo {
             COMMAND_ADDPREDEF_NoRuleType,
             COMMAND_ADDPREDEF_MissingParameter,
             COMMAND_ADDPREDEF_InvalidParameterType,
+            COMMAND_ADDPREDEF_InvalidRollType,
         //
         //ROLLANY
             COMMAND_ROLLANY_NoRuleType,
@@ -22,6 +23,12 @@ public enum ExceptionInfo {
         //
         //ROLLPREDEF
             COMMAND_ROLLPREDEF_MissingParameter,
+            COMMAND_ROLLPREDEF_InvalidParameterType,
+        //
+        //CONNECTION
+            COMMAND_CONNECTION_MissingParameter,
+            COMMAND_CONNECTION_DuplicateLogin,
+            COMMAND_CONNECTION_InvalidPasswordOrLogin,
         //
     //
     //ROLLER
@@ -41,8 +48,14 @@ public enum ExceptionInfo {
 //SQL
     //DATABASE
         SQL_DATABASE_CannotOpenDatabase,
-    //DATASET
-        SQL_DATASET_InvalidLineNumber,
-        SQL_DATASET_InvalidColumnNumber,
-        SQL_DATASET_InvalidColumnName,
+    //
+    //COMMAND
+        //INSERT
+            SQL_COMMAND_INSERT_DuplicateColumnsValue,
+            SQL_COMMAND_INSERT_NoValuesProvided,
+        //
+    //
+//DB
+    //TYPEMAP
+        DB_TYPEMAP_InvalidType,
 }

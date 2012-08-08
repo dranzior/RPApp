@@ -39,24 +39,20 @@ public class DataSet {
             dataTmp.add(strTmp);
             nbLines++;
         }
-        data = new String [nbColumns][nbLines];
+        data = new String [nbLines][nbColumns];
         dataTmp.toArray(data);
     }
     
-    public String getData(int _line, int _column) throws MyException {
-        if (_line >= nbLines)
-            throw new MyException(ExceptionInfo.SQL_DATASET_InvalidLineNumber);
-        if (_column >= nbColumns)
-            throw new MyException(ExceptionInfo.SQL_DATASET_InvalidColumnNumber);
-        
+    public String getData(int _line, int _column) {
         return data[_line][_column];
     }
     
-    public String getData(int _line, String _column) throws MyException {
-        if (!columns.containsKey(_column))
-            throw new MyException(ExceptionInfo.SQL_DATASET_InvalidColumnName);
-        
+    public String getData(int _line, String _column) {
         int tmp = columns.get(_column);
         return getData(_line, tmp);
+    }
+    
+    public int GetSize() {
+        return nbLines;
     }
 }

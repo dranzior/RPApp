@@ -45,11 +45,14 @@ public class SQLiteConnection{
 
     public synchronized DataSet Select(SqlSelectCommand command) {
         try {
+            String tmp = command.createSqlStatement();
             ResultSet rs = conn.createStatement().executeQuery(command.createSqlStatement());
             DataSet ds = new DataSet(rs, command);
             return ds;
         } catch (SQLException ex) {
             //TODO Log
+            String tmp = ex.getMessage();
+            int i=0;
         }
         return null;
     }

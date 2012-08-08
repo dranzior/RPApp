@@ -7,7 +7,7 @@ package Commands.RollerCommands;
 import Commands.Command;
 import MyException.ExceptionInfo;
 import MyException.MyException;
-import rpappserver.Client;
+import rpappserver.Network.Client;
 
 /**
  *
@@ -19,7 +19,7 @@ public class RollAny extends Command{
     }
     
     @Override
-    public void Run(String[] param, Client cli) throws MyException {
+    public String Run(String[] param, Client cli) throws MyException {
         if (param.length < 2)
             throw new MyException(ExceptionInfo.COMMAND_ROLLANY_NoRuleType);
         if (param[1].compareToIgnoreCase("simple") == 0) {
@@ -29,7 +29,7 @@ public class RollAny extends Command{
                 int diceType = Integer.parseInt(param[2]);
                 int nbDice = Integer.parseInt(param[3]);
                 int baseBonus = Integer.parseInt(param[4]);
-                cli.diceRoller.RollSimpleRoll(diceType, nbDice, baseBonus);
+                cli.player.diceRoller.RollSimpleRoll(diceType, nbDice, baseBonus);
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ROLLANY_InvalidParameterType);
             }
@@ -44,7 +44,7 @@ public class RollAny extends Command{
                 int sucess = Integer.parseInt(param[4]);
                 int again = Integer.parseInt(param[5]);
                 
-                cli.diceRoller.RollSucessCount(diceType, nbDice, sucess, again);
+                cli.player.diceRoller.RollSucessCount(diceType, nbDice, sucess, again);
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ROLLANY_InvalidParameterType);
             }
@@ -55,7 +55,7 @@ public class RollAny extends Command{
             try {
                 int diceType = Integer.parseInt(param[2]);
                 int threshold = Integer.parseInt(param[3]);
-                cli.diceRoller.RollLowerRoll(diceType, threshold);
+                cli.player.diceRoller.RollLowerRoll(diceType, threshold);
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ROLLANY_InvalidParameterType);
             }
@@ -68,12 +68,11 @@ public class RollAny extends Command{
                 int nbDice = Integer.parseInt(param[3]);
                 int nbKeep = Integer.parseInt(param[4]);
                 int baseBonus = Integer.parseInt(param[5]);
-                cli.diceRoller.RollKeepBest(diceType, nbDice, nbKeep, baseBonus);
+                cli.player.diceRoller.RollKeepBest(diceType, nbDice, nbKeep, baseBonus);
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ROLLANY_InvalidParameterType);
             }
         }
-        cli.Send(cli.diceRoller.GetResult());
+        return "result;"+cli.player.diceRoller.GetResult();
     }
-    
 }

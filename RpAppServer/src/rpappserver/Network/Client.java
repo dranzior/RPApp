@@ -2,16 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package rpappserver;
+package rpappserver.Network;
 
 import Commands.Commands;
-import DiceRoller.DiceRoller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import users.Player;
 
 /**
  *
@@ -20,10 +20,14 @@ import java.util.ArrayList;
 public class Client extends Thread {
     private Socket socket;
     private boolean running = false;
-    private Commands cmds;
-    public DiceRoller diceRoller = new DiceRoller();
+    
+    
     private BufferedReader in = null;
     private PrintWriter out = null;
+    
+    public Commands cmds;
+    public Player player = null;
+    
 
     public Client(Socket _socket) {
         socket = _socket;
@@ -36,6 +40,10 @@ public class Client extends Thread {
         }
     }
 
+    public void InitPlayer(int id, int userType) {
+        player = new Player(id, userType);
+    }
+    
     @Override
     public void start() {
         running = true;

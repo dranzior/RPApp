@@ -16,4 +16,8 @@ public interface DiceRule {
     public DiceResult Roll() throws MyException;
 
     public DiceResult Roll(int bonus) throws MyException;
+    
+    public void LoadDB(int userId);
+    
+    public void SaveDB(int userId);
 }

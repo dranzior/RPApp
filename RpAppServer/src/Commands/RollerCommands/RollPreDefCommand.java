@@ -7,7 +7,7 @@ package Commands.RollerCommands;
 import Commands.Command;
 import MyException.ExceptionInfo;
 import MyException.MyException;
-import rpappserver.Client;
+import rpappserver.Network.Client;
 
 /**
  *
@@ -20,18 +20,17 @@ public class RollPreDefCommand extends Command {
     }
     
     @Override
-    public void Run(String[] param, Client cli) throws MyException {
+    public String Run(String[] param, Client cli) throws MyException {
         if (param.length != 3)
             throw new MyException(ExceptionInfo.COMMAND_ROLLPREDEF_MissingParameter);
         try {
             int id = Integer.parseInt(param[1]);
             int bonus = Integer.parseInt(param[2]);
-            cli.diceRoller.RollPreDefined(id, bonus);
-            String tmp = cli.diceRoller.GetResult();
-            cli.Send(tmp);
+            cli.player.diceRoller.RollPreDefined(id, bonus);
         } catch (NumberFormatException ex) {
-            
+            throw new MyException(ExceptionInfo.COMMAND_ROLLPREDEF_InvalidParameterType);
         }
+        return "result;"+cli.player.diceRoller.GetResult();
         
     }
     

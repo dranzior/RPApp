@@ -4,6 +4,8 @@
  */
 package rpappserver;
 
+import rpappserver.Network.Server;
+import rpappserver.Interface.Console;
 import DB.SQLite.SQLiteConnection;
 import MyException.MyException;
 import java.util.HashMap;

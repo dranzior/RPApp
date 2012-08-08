@@ -11,7 +11,7 @@ import DiceRoller.Rules.SimpleRollRule;
 import DiceRoller.Rules.SucessCountRule;
 import MyException.ExceptionInfo;
 import MyException.MyException;
-import rpappserver.Client;
+import rpappserver.Network.Client;
 
 /**
  *
@@ -22,7 +22,7 @@ public class AddPreDefCommand extends Command {
         return "addpredef";
     }
     @Override
-    public void Run(String [] param, Client cli) throws MyException {
+    public String Run(String [] param, Client cli) throws MyException {
         if (param.length < 2)
             throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_NoRuleType);
         if (param[1].compareToIgnoreCase("simple") == 0) {
@@ -32,13 +32,13 @@ public class AddPreDefCommand extends Command {
                 int diceType = Integer.parseInt(param[2]);
                 int nbDice = Integer.parseInt(param[3]);
                 int baseBonus = Integer.parseInt(param[4]);
-                cli.diceRoller.AddRule(new SimpleRollRule(diceType, nbDice, baseBonus));
+                cli.player.diceRoller.AddRule(new SimpleRollRule(diceType, nbDice, baseBonus));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
             
         }
-        if (param[1].compareToIgnoreCase("sucess") == 0) {
+        else if (param[1].compareToIgnoreCase("sucess") == 0) {
             if (param.length != 6)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
@@ -47,23 +47,23 @@ public class AddPreDefCommand extends Command {
                 int sucess = Integer.parseInt(param[4]);
                 int again = Integer.parseInt(param[5]);
                 
-                cli.diceRoller.AddRule(new SucessCountRule(diceType, nbDice, sucess, again));
+                cli.player.diceRoller.AddRule(new SucessCountRule(diceType, nbDice, sucess, again));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
         }
-        if (param[1].compareToIgnoreCase("lower") == 0) {
+        else if (param[1].compareToIgnoreCase("lower") == 0) {
             if (param.length != 4)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
                 int diceType = Integer.parseInt(param[2]);
                 int threshold = Integer.parseInt(param[3]);
-                cli.diceRoller.AddRule(new LowerRollRule(diceType, threshold));
+                cli.player.diceRoller.AddRule(new LowerRollRule(diceType, threshold));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
         }
-        if (param[1].compareToIgnoreCase("keep") == 0) {
+        else if (param[1].compareToIgnoreCase("keep") == 0) {
             if (param.length != 6)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
@@ -71,10 +71,14 @@ public class AddPreDefCommand extends Command {
                 int nbDice = Integer.parseInt(param[3]);
                 int nbKeep = Integer.parseInt(param[4]);
                 int baseBonus = Integer.parseInt(param[5]);
-                cli.diceRoller.AddRule(new KeepBestRule(diceType, nbDice, nbKeep, baseBonus));
+                cli.player.diceRoller.AddRule(new KeepBestRule(diceType, nbDice, nbKeep, baseBonus));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
         }
+        else {
+            throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidRollType);
+        }
+        return "AddPreDef;Sucess";
     }
 }

@@ -5,7 +5,7 @@
 package Commands;
 
 import MyException.MyException;
-import rpappserver.Client;
+import rpappserver.Network.Client;
 
 /**
  *
@@ -15,5 +15,5 @@ public abstract class Command {
     static public String Name() {
         return "Command";
     }
-    abstract public void Run(String [] param, Client cli) throws MyException;
+    abstract public String Run(String [] param, Client cli) throws MyException;
 }
