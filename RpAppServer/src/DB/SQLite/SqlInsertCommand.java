@@ -44,10 +44,14 @@ public class SqlInsertCommand {
         ret = ret.concat(")");
         ret = ret.concat(" VALUES");
         ret = ret.concat(" (");
-        ret = ret.concat((String)key[0]);
+        ret = ret.concat((String)val[0]);
         for (int i = 1; i < val.length; i++)
             ret = ret.concat(", "+val[i]);
-        ret = ret.concat(" );");
+        ret = ret.concat(");");
         return ret;
+    }
+    
+    public void clearValue() {
+        columns.clear();
     }
 }

@@ -35,7 +35,7 @@ public class Commands {
     }
     
     public void AddUserCommands() {
-        
+        AddRollerCommands();
     }
     
     public void AddRollerCommands() {

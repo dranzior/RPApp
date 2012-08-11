@@ -26,52 +26,51 @@ public class AddPreDefCommand extends Command {
         if (param.length < 2)
             throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_NoRuleType);
         if (param[1].compareToIgnoreCase("simple") == 0) {
-            if (param.length != 5)
-                throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
-            try {
-                int diceType = Integer.parseInt(param[2]);
-                int nbDice = Integer.parseInt(param[3]);
-                int baseBonus = Integer.parseInt(param[4]);
-                cli.player.diceRoller.AddRule(new SimpleRollRule(diceType, nbDice, baseBonus));
-            } catch (NumberFormatException ex) {
-                throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
-            }
-            
-        }
-        else if (param[1].compareToIgnoreCase("sucess") == 0) {
             if (param.length != 6)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
-                int diceType = Integer.parseInt(param[2]);
-                int nbDice = Integer.parseInt(param[3]);
-                int sucess = Integer.parseInt(param[4]);
-                int again = Integer.parseInt(param[5]);
+                int diceType = Integer.parseInt(param[3]);
+                int nbDice = Integer.parseInt(param[4]);
+                int baseBonus = Integer.parseInt(param[5]);
+                cli.player.AddRule(new SimpleRollRule(param[2],diceType, nbDice, baseBonus));
+            } catch (NumberFormatException ex) {
+                throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
+            }
+        }
+        else if (param[1].compareToIgnoreCase("sucess") == 0) {
+            if (param.length != 7)
+                throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
+            try {
+                int diceType = Integer.parseInt(param[3]);
+                int nbDice = Integer.parseInt(param[4]);
+                int sucess = Integer.parseInt(param[5]);
+                int again = Integer.parseInt(param[6]);
                 
-                cli.player.diceRoller.AddRule(new SucessCountRule(diceType, nbDice, sucess, again));
+                cli.player.AddRule(new SucessCountRule(param[2],diceType, nbDice, sucess, again));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
         }
         else if (param[1].compareToIgnoreCase("lower") == 0) {
-            if (param.length != 4)
+            if (param.length != 5)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
-                int diceType = Integer.parseInt(param[2]);
-                int threshold = Integer.parseInt(param[3]);
-                cli.player.diceRoller.AddRule(new LowerRollRule(diceType, threshold));
+                int diceType = Integer.parseInt(param[3]);
+                int threshold = Integer.parseInt(param[4]);
+                cli.player.AddRule(new LowerRollRule(param[2],diceType, threshold));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }
         }
         else if (param[1].compareToIgnoreCase("keep") == 0) {
-            if (param.length != 6)
+            if (param.length != 7)
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_MissingParameter);
             try {
-                int diceType = Integer.parseInt(param[2]);
-                int nbDice = Integer.parseInt(param[3]);
-                int nbKeep = Integer.parseInt(param[4]);
-                int baseBonus = Integer.parseInt(param[5]);
-                cli.player.diceRoller.AddRule(new KeepBestRule(diceType, nbDice, nbKeep, baseBonus));
+                int diceType = Integer.parseInt(param[3]);
+                int nbDice = Integer.parseInt(param[4]);
+                int nbKeep = Integer.parseInt(param[5]);
+                int baseBonus = Integer.parseInt(param[6]);
+                cli.player.AddRule(new KeepBestRule(param[2], diceType, nbDice, nbKeep, baseBonus));
             } catch (NumberFormatException ex) {
                 throw new MyException(ExceptionInfo.COMMAND_ADDPREDEF_InvalidParameterType);
             }

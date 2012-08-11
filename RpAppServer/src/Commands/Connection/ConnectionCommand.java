@@ -39,12 +39,12 @@ public class ConnectionCommand extends Command {
             int userType = Integer.parseInt(data.getData(0, "UserType"));
             cli.InitPlayer(id, userType);
             switch (userType) {
-                case 0:
-                    cli.cmds.AddUserCommands();
-                case 1:
-                    cli.cmds.AddDmCommands();
                 case 2:
                     cli.cmds.AddAdminCommands();
+                case 1:
+                    cli.cmds.AddDmCommands();
+                case 0:
+                    cli.cmds.AddUserCommands();
             }
             return "connection;sucess";
         } else {

@@ -40,9 +40,28 @@ public class SQLiteConnection{
     }
     
     public synchronized void Insert(SqlInsertCommand command) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            String tmp = command.createSqlStatement();
+            conn.createStatement().executeUpdate(tmp);
+            conn.commit();
+        } catch (MyException ex) {
+            
+        } catch (SQLException ex) {
+            String t = ex.getMessage();
+            int i = 10;
+        }
+        
+        
     }
 
+    static public SqlSelectCommand GetlastId(String table)
+    {
+        SqlSelectCommand cmd = new SqlSelectCommand("sqlite_sequence");
+        cmd.addColumn("seq");
+        cmd.addClause("name", "=", "\""+table+"\"");
+        return cmd;
+    }
+    
     public synchronized DataSet Select(SqlSelectCommand command) {
         try {
             String tmp = command.createSqlStatement();
