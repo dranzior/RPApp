@@ -26,21 +26,36 @@ public class RpAppClient {
             socket.connect(new InetSocketAddress("localhost", 44910));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String tmp = null;
+            String tmp;
             /*
-             * Test de Connection
+             * Connect a user
              */
             out.println("connection;DongeonMaster;APassword");
             tmp = in.readLine();
             System.out.println(tmp);
 
             /*
-             * Test de Rule
+             * Create new Rules
+             * To do only one time as its written in DB
              */
-//            out.println("addpredef;simple;10;2;5");
-//            out.println("addpredef;keep;10;5;2;5");
-//            out.println("addpredef;sucess;10;5;8;10");
-//            out.println("addpredef;lower;100;42");
+//            out.println("addpredef;simple;simple;10;2;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("addpredef;keep;keep;10;5;2;5");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("addpredef;sucess;sucess;10;5;8;10");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+//            out.println("addpredef;lower;lower;100;42");
+//            tmp = in.readLine();
+//            System.out.println(tmp);
+            
+            /*
+             * Test previously created rules
+             * To do only if the "Create new Rules" is uncommented
+             * or if it alredy run on the DB
+             */
 //            out.println("rollpredef;0;5");
 //            tmp = in.readLine();
 //            System.out.println(tmp);
@@ -55,7 +70,7 @@ public class RpAppClient {
 //            System.out.println(tmp);
             
             /*
-             * Test de Roll simple
+             * Test Specific Roll (Can be done as Standalone)
              */
 //            out.println("rollany;simple;10;2;5");
 //            tmp = in.readLine();
@@ -69,13 +84,12 @@ public class RpAppClient {
 //            out.println("rollany;sucess;10;5;8;10");
 //            tmp = in.readLine();
 //            System.out.println(tmp);
-            
 
             in.close();
             out.close();
             socket.close();
         } catch (IOException ex) {
+            
         }
-
     }
 }
